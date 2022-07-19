@@ -1,3 +1,7 @@
+newsolve(Moves, Matrix) :-
+    between(0,14,Count),
+    solve(Moves, Count, [a_cw, a_ccw, b_cw, b_ccw, c_cw, c_ccw], Matrix).
+
 solve([Hd | Tl], Count, Available, Matrix) :-
     Count > 0,
     member(Hd, Available),
