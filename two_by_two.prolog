@@ -5,7 +5,8 @@ solve([Hd | Tl], Count, Available, Matrix) :-
     NewCount is Count - 1,
     allowed(Hd, NextAvailable),
     solve(Tl, NewCount, NextAvailable, Rotated).
-solve([], 0, _, Matrix) :-
+solve([], Count, _, Matrix) :-
+    Count >= 0,
     solved(Matrix).
 
 solved([[A, A, A, A], [B, B, B, B], [C, C, C, C], [D, D, D, D], [E, E, E, E], [F, F, F, F]]).
