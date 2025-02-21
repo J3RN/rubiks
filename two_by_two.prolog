@@ -1,16 +1,13 @@
 newsolve(Moves, Matrix) :-
-    between(0,14,Count),
-    solve(Moves, Count, [a_cw, a_ccw, b_cw, b_ccw, c_cw, c_ccw], Matrix).
+    length(Moves, _),
+    solve(Moves, [a_cw, a_ccw, b_cw, b_ccw, c_cw, c_ccw], Matrix).
 
-solve([Hd | Tl], Count, Available, Matrix) :-
-    Count > 0,
+solve([Hd | Tl], Available, Matrix) :-
     member(Hd, Available),
     rotate(Hd, Matrix, Rotated),
-    NewCount is Count - 1,
     allowed(Hd, NextAvailable),
-    solve(Tl, NewCount, NextAvailable, Rotated).
-solve([], Count, _, Matrix) :-
-    Count >= 0,
+    solve(Tl, NextAvailable, Rotated).
+solve([], _, Matrix) :-
     solved(Matrix).
 
 solved([[A, A, A, A], [B, B, B, B], [C, C, C, C], [D, D, D, D], [E, E, E, E], [F, F, F, F]]).
